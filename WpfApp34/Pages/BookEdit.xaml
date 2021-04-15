@@ -1,0 +1,83 @@
+﻿<Page x:Class="WpfApp34.Pages.BookEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp34.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BookEdit">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Наименование"/>
+            <TextBox Text="{Binding SelectedBook.Name}"/>
+            <TextBlock Text="Дата публикации"/>
+            <DatePicker SelectedDate="{Binding SelectedBook.PublishDate}"/>
+            <TextBlock Text="Издательство"/>
+            <ComboBox ItemsSource="{Binding Publishers}"
+                      SelectedItem="{Binding SelectedBook.Publisher}" 
+                      DisplayMemberPath="Name"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.ColumnSpan="2" Text="Редактирование жанров"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding SelectedBookGenres}"
+                     SelectedItem="{Binding SelectedGenre}"
+                     DisplayMemberPath="Name"/>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="Выбор жанра"/>
+                <ComboBox ItemsSource="{Binding Genres}" 
+                          SelectedItem="{Binding SelectedGenre}"
+                          DisplayMemberPath="Name"/>
+                <Button Content="Добавить" Command="{Binding AddGenre}"/>
+                <Button Content="Удалить" Command="{Binding RemoveGenre}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Редактирование авторов"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding SelectedBookAuthors}" SelectedItem="{Binding SelectedAuthor}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}"/>
+                        <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding SecondName}"/>
+                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}"/>
+                        <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding Birthday, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="Выбор автора"/>
+                <ComboBox ItemsSource="{Binding Authors}" 
+                          SelectedItem="{Binding SelectedAuthor}"
+                          DisplayMemberPath="LastName"/>
+                <Button Content="Добавить" Command="{Binding AddAuthor}"/>
+                <Button Content="Удалить" Command="{Binding RemoveAuthor}"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Вернуться к списку книг" Command="{Binding OpenListBooks}" />
+            <Button Content="Сохранить изменения" Command="{Binding SaveSelectedBook}" />
+        </StackPanel>
+    </Grid>
+</Page>

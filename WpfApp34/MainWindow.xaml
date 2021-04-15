@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfApp34.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp34"
+        mc:Ignorable="d"
+        Title="Библиотечный каталог" d:Height="450" d:Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Жанры" Command="{Binding OpenGenreEditor}" />
+            <MenuItem Header="Издательства" Command="{Binding OpenPublisherEditor}"/>
+            <MenuItem Header="Авторы" Command="{Binding OpenAuthorEditor}"/>
+            <MenuItem Header="Книги" Command="{Binding OpenBookEditor}"/>
+        </Menu>
+        <Frame Grid.Row="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

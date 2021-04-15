@@ -1,0 +1,36 @@
+﻿<Page x:Class="WpfApp34.Pages.GenreEditor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp34.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GenreEditor">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Добавить жанр" Command="{Binding CreateGenre}"/>
+        </Menu>
+        <ListView Grid.Row="1" ItemsSource="{Binding Genres}" SelectedItem="{Binding SelectedGenre}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Grid.Column="1" Text="Редактирование"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Наименование"/>
+            <TextBox Text="{Binding SelectedGenre.Name}"/>
+            <Button Content="Сохранить" Command="{Binding SaveGenre}"/>
+        </StackPanel>
+    </Grid>
+</Page>

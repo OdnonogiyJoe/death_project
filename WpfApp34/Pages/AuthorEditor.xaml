@@ -1,0 +1,46 @@
+﻿<Page x:Class="WpfApp34.Pages.AuthorEditor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp34.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthorEditor">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Добавить автора" Command="{Binding CreateAuthor}"/>
+        </Menu>
+        <ListView Grid.Row="1" ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding SecondName}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding Birthday, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Grid.Column="1" Text="Редактирование"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Имя"/>
+            <TextBox Text="{Binding SelectedAuthor.FirstName}"/>
+            <TextBlock Text="Отчество"/>
+            <TextBox Text="{Binding SelectedAuthor.SecondName}"/>
+            <TextBlock Text="Фамилия"/>
+            <TextBox Text="{Binding SelectedAuthor.LastName}"/>
+            <TextBlock Text="Дата рождения"/>
+            <DatePicker Text="{Binding SelectedAuthor.Birthday}"/>
+            <Button Content="Сохранить" Command="{Binding SaveAuthor}"/>
+        </StackPanel>
+    </Grid>
+</Page>
